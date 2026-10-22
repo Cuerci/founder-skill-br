@@ -42,6 +42,7 @@ FIRST_NAMES = [
     "Nicolas", "Pâmela", "Rogério", "Sueli", "Thalita", "Ubirajara", "Vitória", "Weslley", "Zé",
 ]
 REASONS = ["preco", "habito", "necessidade", "confianca", "qualidade", "conveniencia", "momento", "valores", "outro"]
+REASON_LABELS = {"preco": "preço", "habito": "hábito", "confianca": "confiança", "conveniencia": "conveniência"}
 ANSWER_FIELDS = {"id", "compra", "motivo_codigo", "motivo"}
 WAVE = 10
 
@@ -349,16 +350,17 @@ def results_md(res):
             L.append("| %s | %d | %s%s |" % (k, n, pct(r), "  (pouca gente)" if n < 8 else ""))
     L += ["", "## Por que passam", "", "| motivo | compradores | nas palavras deles |", "| --- | ---: | --- |"]
     for k, n, quotes, ids in res["why_not"]:
-        L.append("| %s | %d | %s |" % (k, n, " · ".join('"%s" (%s)' % (q.replace("|", "/"), i) for q, i in zip(quotes, ids))))
+        L.append("| %s | %d | %s |" % (REASON_LABELS.get(k, k), n, " · ".join('"%s" (%s)' % (q.replace("|", "/"), i) for q, i in zip(quotes, ids))))
     L += ["", "## Por que compram", "", "| motivo | compradores | nas palavras deles |", "| --- | ---: | --- |"]
     for k, n, quotes, ids in res["why_yes"]:
-        L.append("| %s | %d | %s |" % (k, n, " · ".join('"%s" (%s)' % (q.replace("|", "/"), i) for q, i in zip(quotes, ids))))
+        L.append("| %s | %d | %s |" % (REASON_LABELS.get(k, k), n, " · ".join('"%s" (%s)' % (q.replace("|", "/"), i) for q, i in zip(quotes, ids))))
     if res["flip"]:
         L += ["", "## O que viraria um não", ""]
         for f in res["flip"][:12]:
             L.append("- %s" % f)
     if res["purchases_first_month_per_buyer"] is not None:
-        L += ["", "Quem compra diz que compraria **%.1f vezes** no primeiro mês, em média." % res["purchases_first_month_per_buyer"]]
+        L += ["", "Quem compra diz que compraria **%s vezes** no primeiro mês, em média." % (
+            "%.1f" % res["purchases_first_month_per_buyer"]).replace(".", ",")]
     if res["price_answers"]:
         L += ["", "%d compradores deram as quatro respostas de preço. Rode o van_westendorp.py do fundador-preco na pasta respostas." % res["price_answers"]]
     return "\n".join(L) + "\n"

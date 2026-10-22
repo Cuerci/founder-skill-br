@@ -1,0 +1,13 @@
+{
+  "id": "P003",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Faz anos que eu marco tudo no WhatsApp e no caderno e dá certo. Pagar R$ 29,90 todo mês por uma coisa que tem app grátis que faz, sendo que minhas clientes já me mandam mensagem direto, não compensa pra mim.",
+  "objecao": "Tem app grátis que faz isso. E minhas clientes são de anos, não vão querer ficar clicando em link pra marcar, elas mandam áudio e pronto.",
+  "mudaria_de_ideia": "Se no teste de 7 dias eu visse que acabou com as faltas e os furos de horário, aí os R$ 29,90 se pagariam com uma cliente só.",
+  "preco_muito_barato": 5,
+  "preco_barato": 12,
+  "preco_caro": 25,
+  "preco_muito_caro": 40
+}

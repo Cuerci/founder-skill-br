@@ -1,0 +1,13 @@
+{
+  "id": "P020",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "preco",
+  "motivo": "Mano, eu já uso um app grátis que marca horário e quebra o galho. Ganhando uns 2.300 e gastando com moto e passagem, R$ 29,90 todo mês é mais uma conta que eu não preciso agora.",
+  "objecao": "O que esse aí faz que o grátis que eu já uso não faz? Só o lembrete no WhatsApp? Eu mesmo mando mensagem pra cliente na véspera, não custa nada.",
+  "mudaria_de_ideia": "Se custasse tipo uns R$ 10 a R$ 15 por mês, ou tivesse um plano grátis pra quem tem pouca cliente, e o lembrete realmente diminuísse cliente furando horário.",
+  "preco_muito_barato": 5,
+  "preco_barato": 12,
+  "preco_caro": 20,
+  "preco_muito_caro": 30
+}

@@ -1,0 +1,28 @@
+{
+  "negocio": "Unhas em Dia (exemplo fictício)",
+  "modelo": "assinatura",
+  "unidade": "assinante-mês",
+  "preco": 29.90,
+  "variavel": [
+    {"item": "Lembretes no WhatsApp (estimativa: 120 por mês x R$ 0,035)", "custo": 4.20},
+    {"item": "Servidor e banco por assinante (estimativa)", "custo": 0.80},
+    {"item": "Meios de pagamento, mix de Pix e cartão (estimativa)", "percentual": 0.025}
+  ],
+  "fixo_mensal": [
+    {"item": "VPS (estimativa)", "custo": 100},
+    {"item": "Contador (estimativa)", "custo": 300},
+    {"item": "Domínio, e-mail e ferramentas (estimativa)", "custo": 80}
+  ],
+  "inicial": [
+    {"item": "Abertura de CNPJ (ME) e certificado digital (estimativa)", "custo": 500},
+    {"item": "Registro de marca no INPI, classe 42, ME", "custo": 440},
+    {"item": "Domínio .com.br, 1 ano", "custo": 40},
+    {"item": "Anúncios de lançamento (estimativa)", "custo": 1500}
+  ],
+  "simples": {"anexo": "fator_r"},
+  "meta_renda_mensal": 4000,
+  "novos_por_mes": [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 60],
+  "churn_mensal": 0.07,
+  "custo_aquisicao": 40,
+  "capacidade_assinantes": 5000
+}

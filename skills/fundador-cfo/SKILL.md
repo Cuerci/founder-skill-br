@@ -66,13 +66,31 @@ Pergunte ao usuário o que só ele sabe (aluguel, salário que vai pagar, quanto
 de pró-labore). Use o preço de `fundador/preco.md` ou `fundador/pitch.md` se
 existirem.
 
-**Imposto não é opcional.** Sempre inclua o imposto sobre a receita como
-`percentual` e diga qual regime e anexo foi assumido. Para SaaS: Simples Anexo III
-(6%) só se o Fator R passar de 28%; sem pró-labore, o cenário honesto é o Anexo V
-(15,5%). SaaS não pode ser MEI hoje.
+**Imposto não é opcional.** Para serviço e software, use o Simples calculado:
 
-**O pró-labore do fundador é custo.** Se o fundador vai viver disso, ponha um
-pró-labore em `fixo_mensal`; senão o "lucro" é o salário dele disfarçado.
+```json
+"simples": {"anexo": "fator_r"},
+"prolabore_mensal": 0,
+"meta_renda_mensal": 5000
+```
+
+- `anexo`: `"fator_r"` para SaaS e serviços intelectuais (escolhe III ou V a cada
+  mês), `"III"` para curso livre de verdade e outros serviços do Anexo III, `"V"` para
+  forçar o pior caso. A ferramenta calcula a alíquota efetiva mês a mês pela RBT12
+  proporcional do início de atividade. Aí **não** ponha o Simples em `variavel`.
+- `prolabore_mensal`: o pró-labore do fundador. Entra nos custos fixos e no Fator R.
+  Salários de funcionários em `fixo_mensal` com `"folha": true` também contam.
+- `meta_renda_mensal`: quanto o fundador quer receber por mês, líquido de INSS. Gera
+  a seção **Para viver disso**, que compara três jeitos de tirar o dinheiro (tudo em
+  pró-labore; pró-labore só até o Fator R e o resto em lucro; só lucro) e diz quantos
+  clientes cada um exige. **Sempre pergunte a meta ao fundador**: sem ela, um
+  "Lucrativo" pode significar uma empresa que paga o servidor e não paga ninguém.
+
+Comércio e indústria (Anexos I e II) ainda vão como `percentual` em `variavel`.
+SaaS não pode ser MEI hoje. Se o usuário sugerir faturar o SaaS como "curso" ou
+"mentoria" para cair no Anexo III, explique o que diz `regras-br.md`: a Receita olha
+o que é prestado de fato, e a reclassificação vem com multa de 75% a 150%. O
+caminho legal é o Fator R, e a seção Para viver disso mostra o custo dele.
 
 **A rampa é onde os planos mentem.** O mês 1 quase nunca é o volume do plano. Se o
 painel rodou, use a taxa de compra e as compras do primeiro mês para conferir a
@@ -109,6 +127,8 @@ Acrescente uma seção curta no topo de `fundador/cfo.md`, em palavras simples:
 - **A linha a vigiar**: o custo ou a premissa que mais mexe no resultado
   (normalmente a rampa, o churn, o aluguel ou o preço), com o cenário que prova.
 - **Caixa**: quanto dinheiro o fundador precisa antes de se pagar.
+- **Para viver disso**: quantos clientes para a meta de renda, pelo melhor dos três
+  caminhos, e em que mês da rampa o plano chega lá (ou que não chega no ano 1).
 - **Três jeitos de melhorar a margem**, cada um com o número que muda e quanto
   (rode o cenário, não chute).
 - Se as condições financeiras do conselho (`fundador/conselho.md`) foram cumpridas.

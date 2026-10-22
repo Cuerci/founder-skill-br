@@ -22,6 +22,7 @@ def load(folder, name):
 
 
 ue = load("fundador-cfo", "economia_unitaria")
+sn = load("fundador-cfo", "simples")
 vw = load("fundador-preco", "van_westendorp")
 pn = load("fundador-consumidor", "painel")
 cp = load("fundador-plano", "compilar")
@@ -99,6 +100,57 @@ class EconomiaUnitaria(unittest.TestCase):
         self.assertIn("R$ 49,90", ue.report(s, ue.analyse(s)))
 
 
+class Simples(unittest.TestCase):
+    def test_tabelas(self):
+        self.assertAlmostEqual(sn.aliquota_efetiva(180_000, "III"), 0.06)
+        self.assertAlmostEqual(sn.aliquota_efetiva(480_000, "III"), (480_000 * 0.135 - 17_640) / 480_000)
+        self.assertAlmostEqual(sn.aliquota_efetiva(100_000, "V"), 0.155)
+        with self.assertRaises(sn.SimplesError):
+            sn.aliquota_efetiva(5_000_000, "III")
+
+    def test_rbt12_proporcional_no_inicio(self):
+        meses = sn.apurar([10_000, 20_000, 30_000], [0, 0, 0], "V")
+        self.assertEqual([m[3] for m in meses], [120_000, 120_000, 180_000])
+
+    def test_fator_r_troca_de_anexo(self):
+        meses = sn.apurar([10_000] * 3, [3_000, 3_000, 1_000], "fator_r")
+        self.assertEqual([m[0] for m in meses], ["III", "III", "III"])
+        meses = sn.apurar([10_000] * 3, [1_000] * 3, "fator_r")
+        self.assertEqual(meses[0][0], "V")
+
+
+class SimplesNoCfo(unittest.TestCase):
+    def test_imposto_mes_a_mes(self):
+        s = example("exemplo-assinatura.json")
+        a = ue.analyse(s)
+        self.assertEqual(a["simples"][-1][0], "V")
+        self.assertAlmostEqual(a["months"][0]["tax"], a["months"][0]["revenue"] * 0.155)
+
+    def test_prolabore_leva_ao_anexo_iii(self):
+        s = example("exemplo-assinatura.json")
+        s["prolabore_mensal"] = 3000
+        a = ue.analyse(s)
+        self.assertEqual(a["simples"][-1][0], "III")
+        self.assertAlmostEqual(a["fixed_monthly"], 570 + 3000)
+
+    def test_meta_de_renda(self):
+        a = ue.analyse(example("exemplo-assinatura.json"))
+        g = a["goal"]
+        self.assertEqual([r["name"] for r in g["rows"]],
+                         ["Tudo em pró-labore", "Pró-labore no Fator R + lucros", "Só lucros distribuídos"])
+        for r in g["rows"]:
+            net = r["prolabore"] * (1 - ue.INSS_SOCIO) + r["dividends"]
+            self.assertGreaterEqual(net, 5000)
+        self.assertEqual(g["best"]["name"], "Pró-labore no Fator R + lucros")
+        self.assertIn("Para viver disso", ue.report(example("exemplo-assinatura.json"), a))
+
+    def test_meta_sem_simples_e_recusada(self):
+        s = example("exemplo.json")
+        s["meta_renda_mensal"] = 3000
+        with self.assertRaises(ue.NumbersError):
+            ue.analyse(s)
+
+
 class VanWestendorp(unittest.TestCase):
     def test_csv_do_google_forms(self):
         d = tempfile.mkdtemp()
@@ -166,7 +218,15 @@ class Plano(unittest.TestCase):
         self.addCleanup(shutil.rmtree, d)
         self.assertEqual(cp.verdict(d)[0], "Incompleto")
         shutil.copy(os.path.join(SKILLS, "fundador-cfo", "exemplo-assinatura.json"), os.path.join(d, "numeros.json"))
-        self.assertEqual(cp.verdict(d)[0], "Lucrativo")
+        v, checks, _, _ = cp.verdict(d)
+        self.assertEqual(v, "Lucrativo")
+        self.assertTrue(any("Meta do fundador" in c for _, c in checks))
+        with open(os.path.join(d, "numeros.json"), encoding="utf-8") as fh:
+            s = json.load(fh)
+        s["meta_renda_mensal"] = 15000
+        with open(os.path.join(d, "numeros.json"), "w", encoding="utf-8") as fh:
+            json.dump(s, fh)
+        self.assertEqual(cp.verdict(d)[0], "Ainda não")
         os.makedirs(os.path.join(d, "painel"))
         with open(os.path.join(d, "painel", "resultados.json"), "w") as fh:
             json.dump({"buy_rate": 0.1, "buys": 2, "passes": 18, "answered": 20}, fh)

@@ -1,0 +1,13 @@
+{
+  "id": "P004",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Minha agenda ainda é pequena, dá pra eu mesmo mandar um zap na véspera pra cada cliente sem pagar nada. Com R$ 1.800 no mês e aluguel da cadeira, R$ 29,90 é mais uma conta pra fazer uma coisa que eu já consigo fazer na mão.",
+  "objecao": "Quem fura comigo é justamente quem não responde mensagem. Se a cliente ignora o meu zap, por que ia ligar pro lembrete do app? E ainda tenho que convencer cliente de bairro a marcar por link.",
+  "mudaria_de_ideia": "Se o app cobrasse um sinal no Pix na hora de marcar, aí sim parava o furo e eu pagava fácil.",
+  "preco_muito_barato": 5,
+  "preco_barato": 12,
+  "preco_caro": 25,
+  "preco_muito_caro": 40
+}

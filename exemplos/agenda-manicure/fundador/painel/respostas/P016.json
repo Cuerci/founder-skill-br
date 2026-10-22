@@ -1,0 +1,13 @@
+{
+  "id": "P016",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Já baixei app de agenda e larguei em duas semanas. Minhas clientes de alongamento são fixas, marcam a manutenção comigo no WhatsApp mesmo, e não vão clicar em link nenhum.",
+  "objecao": "Cliente minha não usa link, ela quer falar comigo. Aí eu pago R$ 29,90 todo mês por uma coisa que só eu uso, é mais uma conta.",
+  "mudaria_de_ideia": "Ver que as minhas próprias clientes marcam pelo link nos 7 dias grátis e que o lembrete faz cair as faltas, porque um horário perdido de alongamento me custa bem mais que a mensalidade.",
+  "preco_muito_barato": 5,
+  "preco_barato": 12,
+  "preco_caro": 25,
+  "preco_muito_caro": 40
+}

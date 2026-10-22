@@ -1,0 +1,13 @@
+{
+  "id": "P017",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "preco",
+  "motivo": "Minha agenda já tá cheia e eu mesma mando mensagem pras clientes no WhatsApp, de graça. Pagar R$ 29,90 todo mês pra fazer o que eu já faço não desce, ainda mais eu pagando o aluguel da cadeira.",
+  "objecao": "E se o lembrete chegar com cara de robô e a cliente achar frio? Minhas clientes gostam de falar comigo, não com app. E mais uma assinatura todo mês, que a gente esquece e vai pagando.",
+  "mudaria_de_ideia": "Se custasse uns R$ 10 por mês e uma colega do salão me mostrasse que o furo de cliente dela caiu de verdade usando isso.",
+  "preco_muito_barato": 3,
+  "preco_barato": 9.9,
+  "preco_caro": 19.9,
+  "preco_muito_caro": 30
+}

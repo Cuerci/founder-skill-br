@@ -1,0 +1,82 @@
+{
+ "n": 20,
+ "seed": 42,
+ "customer": {
+  "negocio": "Unhas em Dia (exemplo fictício: agenda com lembrete no WhatsApp para manicures)",
+  "alvo": "Manicures e nail designers autônomas no Brasil que marcam as clientes pelo WhatsApp e atendem em casa, em domicílio ou numa cadeira alugada",
+  "onde": "Brasil, capitais e cidades médias",
+  "idade": [
+   20,
+   50
+  ],
+  "segmentos": [
+   {
+    "nome": "Começando (até 2 anos, agenda ainda incompleta)",
+    "share": 0.35,
+    "renda_mensal": [
+     1500,
+     3000
+    ]
+   },
+   {
+    "nome": "Agenda cheia, esmaltação e manutenção",
+    "share": 0.4,
+    "renda_mensal": [
+     3000,
+     6000
+    ]
+   },
+   {
+    "nome": "Nail designer de alongamento, ticket alto",
+    "share": 0.25,
+    "renda_mensal": [
+     5000,
+     12000
+    ]
+   }
+  ],
+  "comportamentos": [
+   {
+    "nome": "Tudo no WhatsApp",
+    "share": 0.3,
+    "como": "Marca, confirma e cobra pelo WhatsApp; anota num caderno ou no Google Agenda."
+   },
+   {
+    "nome": "Desconfiada de app",
+    "share": 0.15,
+    "como": "Já baixou app de agenda e largou; acha que cliente não usa link."
+   },
+   {
+    "nome": "Sofre com falta",
+    "share": 0.2,
+    "como": "Perde de duas a quatro clientes por mês que não aparecem e não avisam."
+   },
+   {
+    "nome": "Pão-dura com assinatura",
+    "share": 0.2,
+    "como": "Só paga ferramenta se for muito barata ou se já tiver visto resultado."
+   },
+   {
+    "nome": "Já usa outro app",
+    "share": 0.15,
+    "como": "Usa um app grátis ou o Booksy e teria que trocar."
+   }
+  ],
+  "objecoes": [
+   "Minha cliente não vai querer agendar por link, ela gosta de falar comigo",
+   "Eu mesma mando mensagem na véspera, de graça",
+   "R$ 29,90 por mês é mais uma conta",
+   "Já tentei app de agenda e não deu certo",
+   "E se o lembrete for chato e a cliente achar que é robô?",
+   "Tem app grátis que faz isso"
+  ],
+  "habitos": [
+   "você atende numa sala no fundo de casa",
+   "você aluga uma cadeira num salão de bairro",
+   "você posta seus trabalhos no Instagram toda semana",
+   "você faz atendimento em domicílio de moto ou de ônibus",
+   "você responde cliente no WhatsApp entre um atendimento e outro"
+  ]
+ },
+ "pitch": "Unhas em Dia: agenda no celular feita para manicure.\nSua cliente marca o horário por um link no seu Instagram ou WhatsApp, e o app manda o lembrete pelo WhatsApp na véspera, no seu nome.\nAgenda ilimitada e até 300 lembretes por mês, por R$ 29,90 por mês no Pix ou no cartão. Cancela quando quiser.\n7 dias grátis para testar."
+}

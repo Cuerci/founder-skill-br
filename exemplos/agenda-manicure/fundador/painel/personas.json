@@ -1,0 +1,222 @@
+[
+ {
+  "id": "P001",
+  "name": "Kaique",
+  "age": 25,
+  "segment": "Nail designer de alongamento, ticket alto",
+  "income": 8200,
+  "behaviour": "Pão-dura com assinatura",
+  "behaviour_how": "Só paga ferramenta se for muito barata ou se já tiver visto resultado.",
+  "objection": "Tem app grátis que faz isso",
+  "habit": "você posta seus trabalhos no Instagram toda semana"
+ },
+ {
+  "id": "P002",
+  "name": "Igor",
+  "age": 36,
+  "segment": "Começando (até 2 anos, agenda ainda incompleta)",
+  "income": 2600,
+  "behaviour": "Desconfiada de app",
+  "behaviour_how": "Já baixou app de agenda e largou; acha que cliente não usa link.",
+  "objection": "E se o lembrete for chato e a cliente achar que é robô?",
+  "habit": "você atende numa sala no fundo de casa"
+ },
+ {
+  "id": "P003",
+  "name": "Guilherme",
+  "age": 47,
+  "segment": "Agenda cheia, esmaltação e manutenção",
+  "income": 4900,
+  "behaviour": "Tudo no WhatsApp",
+  "behaviour_how": "Marca, confirma e cobra pelo WhatsApp; anota num caderno ou no Google Agenda.",
+  "objection": "Tem app grátis que faz isso",
+  "habit": "você responde cliente no WhatsApp entre um atendimento e outro"
+ },
+ {
+  "id": "P004",
+  "name": "Wesley",
+  "age": 39,
+  "segment": "Começando (até 2 anos, agenda ainda incompleta)",
+  "income": 1800,
+  "behaviour": "Sofre com falta",
+  "behaviour_how": "Perde de duas a quatro clientes por mês que não aparecem e não avisam.",
+  "objection": "R$ 29,90 por mês é mais uma conta",
+  "habit": "você aluga uma cadeira num salão de bairro"
+ },
+ {
+  "id": "P005",
+  "name": "Patrícia",
+  "age": 37,
+  "segment": "Agenda cheia, esmaltação e manutenção",
+  "income": 5900,
+  "behaviour": "Sofre com falta",
+  "behaviour_how": "Perde de duas a quatro clientes por mês que não aparecem e não avisam.",
+  "objection": "E se o lembrete for chato e a cliente achar que é robô?",
+  "habit": "você atende numa sala no fundo de casa"
+ },
+ {
+  "id": "P006",
+  "name": "Jéssica",
+  "age": 39,
+  "segment": "Agenda cheia, esmaltação e manutenção",
+  "income": 4000,
+  "behaviour": "Pão-dura com assinatura",
+  "behaviour_how": "Só paga ferramenta se for muito barata ou se já tiver visto resultado.",
+  "objection": "Minha cliente não vai querer agendar por link, ela gosta de falar comigo",
+  "habit": "você atende numa sala no fundo de casa"
+ },
+ {
+  "id": "P007",
+  "name": "Daniel",
+  "age": 49,
+  "segment": "Nail designer de alongamento, ticket alto",
+  "income": 7500,
+  "behaviour": "Tudo no WhatsApp",
+  "behaviour_how": "Marca, confirma e cobra pelo WhatsApp; anota num caderno ou no Google Agenda.",
+  "objection": "R$ 29,90 por mês é mais uma conta",
+  "habit": "você aluga uma cadeira num salão de bairro"
+ },
+ {
+  "id": "P008",
+  "name": "Mateus",
+  "age": 21,
+  "segment": "Nail designer de alongamento, ticket alto",
+  "income": 6700,
+  "behaviour": "Sofre com falta",
+  "behaviour_how": "Perde de duas a quatro clientes por mês que não aparecem e não avisam.",
+  "objection": "E se o lembrete for chato e a cliente achar que é robô?",
+  "habit": "você atende numa sala no fundo de casa"
+ },
+ {
+  "id": "P009",
+  "name": "Larissa",
+  "age": 22,
+  "segment": "Começando (até 2 anos, agenda ainda incompleta)",
+  "income": 2600,
+  "behaviour": "Tudo no WhatsApp",
+  "behaviour_how": "Marca, confirma e cobra pelo WhatsApp; anota num caderno ou no Google Agenda.",
+  "objection": "Minha cliente não vai querer agendar por link, ela gosta de falar comigo",
+  "habit": "você responde cliente no WhatsApp entre um atendimento e outro"
+ },
+ {
+  "id": "P010",
+  "name": "Ana",
+  "age": 44,
+  "segment": "Agenda cheia, esmaltação e manutenção",
+  "income": 3400,
+  "behaviour": "Já usa outro app",
+  "behaviour_how": "Usa um app grátis ou o Booksy e teria que trocar.",
+  "objection": "Tem app grátis que faz isso",
+  "habit": "você faz atendimento em domicílio de moto ou de ônibus"
+ },
+ {
+  "id": "P011",
+  "name": "Jonas",
+  "age": 50,
+  "segment": "Nail designer de alongamento, ticket alto",
+  "income": 8800,
+  "behaviour": "Tudo no WhatsApp",
+  "behaviour_how": "Marca, confirma e cobra pelo WhatsApp; anota num caderno ou no Google Agenda.",
+  "objection": "R$ 29,90 por mês é mais uma conta",
+  "habit": "você responde cliente no WhatsApp entre um atendimento e outro"
+ },
+ {
+  "id": "P012",
+  "name": "Joana",
+  "age": 47,
+  "segment": "Agenda cheia, esmaltação e manutenção",
+  "income": 4800,
+  "behaviour": "Tudo no WhatsApp",
+  "behaviour_how": "Marca, confirma e cobra pelo WhatsApp; anota num caderno ou no Google Agenda.",
+  "objection": "Eu mesma mando mensagem na véspera, de graça",
+  "habit": "você responde cliente no WhatsApp entre um atendimento e outro"
+ },
+ {
+  "id": "P013",
+  "name": "Railson",
+  "age": 44,
+  "segment": "Começando (até 2 anos, agenda ainda incompleta)",
+  "income": 2600,
+  "behaviour": "Tudo no WhatsApp",
+  "behaviour_how": "Marca, confirma e cobra pelo WhatsApp; anota num caderno ou no Google Agenda.",
+  "objection": "Eu mesma mando mensagem na véspera, de graça",
+  "habit": "você posta seus trabalhos no Instagram toda semana"
+ },
+ {
+  "id": "P014",
+  "name": "Rafael",
+  "age": 32,
+  "segment": "Agenda cheia, esmaltação e manutenção",
+  "income": 6000,
+  "behaviour": "Sofre com falta",
+  "behaviour_how": "Perde de duas a quatro clientes por mês que não aparecem e não avisam.",
+  "objection": "Tem app grátis que faz isso",
+  "habit": "você posta seus trabalhos no Instagram toda semana"
+ },
+ {
+  "id": "P015",
+  "name": "Wagner",
+  "age": 34,
+  "segment": "Começando (até 2 anos, agenda ainda incompleta)",
+  "income": 2800,
+  "behaviour": "Pão-dura com assinatura",
+  "behaviour_how": "Só paga ferramenta se for muito barata ou se já tiver visto resultado.",
+  "objection": "Já tentei app de agenda e não deu certo",
+  "habit": "você atende numa sala no fundo de casa"
+ },
+ {
+  "id": "P016",
+  "name": "Murilo",
+  "age": 27,
+  "segment": "Nail designer de alongamento, ticket alto",
+  "income": 6600,
+  "behaviour": "Desconfiada de app",
+  "behaviour_how": "Já baixou app de agenda e largou; acha que cliente não usa link.",
+  "objection": "R$ 29,90 por mês é mais uma conta",
+  "habit": "você atende numa sala no fundo de casa"
+ },
+ {
+  "id": "P017",
+  "name": "Simone",
+  "age": 38,
+  "segment": "Agenda cheia, esmaltação e manutenção",
+  "income": 4700,
+  "behaviour": "Pão-dura com assinatura",
+  "behaviour_how": "Só paga ferramenta se for muito barata ou se já tiver visto resultado.",
+  "objection": "E se o lembrete for chato e a cliente achar que é robô?",
+  "habit": "você aluga uma cadeira num salão de bairro"
+ },
+ {
+  "id": "P018",
+  "name": "Emerson",
+  "age": 20,
+  "segment": "Agenda cheia, esmaltação e manutenção",
+  "income": 3200,
+  "behaviour": "Já usa outro app",
+  "behaviour_how": "Usa um app grátis ou o Booksy e teria que trocar.",
+  "objection": "Tem app grátis que faz isso",
+  "habit": "você atende numa sala no fundo de casa"
+ },
+ {
+  "id": "P019",
+  "name": "Roberta",
+  "age": 27,
+  "segment": "Começando (até 2 anos, agenda ainda incompleta)",
+  "income": 1600,
+  "behaviour": "Desconfiada de app",
+  "behaviour_how": "Já baixou app de agenda e largou; acha que cliente não usa link.",
+  "objection": "Minha cliente não vai querer agendar por link, ela gosta de falar comigo",
+  "habit": "você posta seus trabalhos no Instagram toda semana"
+ },
+ {
+  "id": "P020",
+  "name": "Arthur",
+  "age": 22,
+  "segment": "Começando (até 2 anos, agenda ainda incompleta)",
+  "income": 2300,
+  "behaviour": "Já usa outro app",
+  "behaviour_how": "Usa um app grátis ou o Booksy e teria que trocar.",
+  "objection": "R$ 29,90 por mês é mais uma conta",
+  "habit": "você faz atendimento em domicílio de moto ou de ônibus"
+ }
+]

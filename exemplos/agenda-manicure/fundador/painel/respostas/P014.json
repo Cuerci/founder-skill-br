@@ -1,0 +1,13 @@
+{
+  "id": "P014",
+  "compra": true,
+  "compras_primeiro_mes": 1,
+  "motivo_codigo": "necessidade",
+  "motivo": "Todo mês tem cliente que some sem avisar, e cada furo desses me custa mais que os R$ 29,90. Se o lembrete no WhatsApp fizer metade delas aparecer, já se pagou. Vou testar os 7 dias e, se funcionar, eu pago.",
+  "objecao": "Tem app grátis que faz agenda, e eu já mando mensagem na mão às vezes. Não sei se a cliente vai ligar pra um lembrete automático ou se vai sumir do mesmo jeito.",
+  "mudaria_de_ideia": "Se nos 7 dias de teste as clientes continuarem faltando igual, ou se o lembrete chegar com cara de robô e não no meu nome, eu cancelo.",
+  "preco_muito_barato": 9,
+  "preco_barato": 19,
+  "preco_caro": 45,
+  "preco_muito_caro": 70
+}

@@ -44,6 +44,15 @@ Campos (veja exemplo.json e exemplo-assinatura.json nesta pasta):
 
   Em venda única, o custo de aquisição por venda vai em "variavel".
 
+  Simples Nacional calculado (opcional; aí NÃO ponha o imposto em "variavel"):
+    simples             {"anexo": "III" | "V" | "fator_r"}: alíquota efetiva mês a mês
+                        pela RBT12 proporcional; "fator_r" escolhe III ou V a cada mês
+    prolabore_mensal    pró-labore do fundador em reais; é custo fixo e conta como folha
+                        no Fator R. O INSS de 11% sai do bolso do sócio, não da empresa
+    "folha": true       num item de fixo_mensal: salário que também conta no Fator R
+    meta_renda_mensal   quanto o fundador quer receber por mês, líquido de INSS; gera a
+                        seção "Para viver disso" com três jeitos de tirar o dinheiro
+
 Todo número do relatório vem desse arquivo. Nada é buscado nem chutado. Se faltar
 um campo, a ferramenta avisa em vez de preencher.
 
@@ -52,9 +61,23 @@ um campo, a ferramenta avisa em vez de preencher.
 """
 
 import argparse
+import importlib.util
 import json
 import math
+import os
 import sys
+
+
+def _load_simples():
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "simples.py")
+    spec = importlib.util.spec_from_file_location("fundador_simples", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+simples = _load_simples()
+INSS_SOCIO = 0.11
 
 
 class NumbersError(Exception):
@@ -120,7 +143,7 @@ def _twelve(spec, key):
     return [float(x) for x in v]
 
 
-def analyse(spec, price=None, volume=1.0):
+def analyse(spec, price=None, volume=1.0, goal=True):
     """Devolve um dict com todos os números do relatório. Função pura, fácil de testar."""
     if "preco" not in spec and price is None:
         raise NumbersError("falta 'preco'")
@@ -130,9 +153,18 @@ def analyse(spec, price=None, volume=1.0):
     mode = spec.get("modelo", "dia")
     if mode not in ("dia", "mes", "assinatura"):
         raise NumbersError("'modelo' é 'dia', 'mes' ou 'assinatura' (veio %r)" % mode)
-    var = _sum(spec.get("variavel"), "variavel", p)
-    fixed = _sum(spec.get("fixo_mensal"), "fixo_mensal")
+    var = var_base = _sum(spec.get("variavel"), "variavel", p)
+    prolabore = float(spec.get("prolabore_mensal", 0))
+    if prolabore < 0:
+        raise NumbersError("'prolabore_mensal' não pode ser negativo")
+    fixed_items = spec.get("fixo_mensal") or []
+    fixed = _sum(fixed_items, "fixo_mensal") + prolabore
+    other_payroll = sum(float(it["custo"]) for it in fixed_items if isinstance(it, dict) and it.get("folha"))
+    payroll = prolabore + other_payroll
     startup = _sum(spec.get("inicial"), "inicial")
+    sn = spec.get("simples")
+    if sn is not None and not (isinstance(sn, dict) and "anexo" in sn):
+        raise NumbersError("'simples' precisa ser {\"anexo\": \"III\" | \"V\" | \"fator_r\"}")
     contribution = p - var
 
     churn = None
@@ -190,6 +222,18 @@ def analyse(spec, price=None, volume=1.0):
         capacity = spec.get("capacidade_assinantes")
         period = "mês"
 
+    tax_months = None
+    if sn is not None:
+        try:
+            tax_months = simples.apurar([u * p for u in units_by_month], [payroll] * 12, sn["anexo"])
+        except simples.SimplesError as e:
+            raise NumbersError(str(e))
+        # a margem por unidade usa a alíquota do mês 12, a mais próxima do regime que vai durar
+        var = var_base + tax_months[-1][1] * p
+        contribution = p - var
+        divisor = contribution * (days if mode == "dia" else 1)
+        breakeven = math.inf if contribution <= 0 else fixed / divisor
+
     margin_at_plan = (contribution - (fixed / plan_units_month if plan_units_month else math.inf)) / p
 
     months = []
@@ -197,14 +241,15 @@ def analyse(spec, price=None, volume=1.0):
     payback_month = None
     for m, (units, level, new_m) in enumerate(zip(units_by_month, level_by_month, new_by_month), start=1):
         revenue = units * p
-        variable_cost = units * var
+        tax = revenue * tax_months[m - 1][1] if tax_months else 0.0
+        variable_cost = units * (var_base if tax_months else var)
         acquisition = new_m * cac
-        profit = revenue - variable_cost - fixed - acquisition
+        profit = revenue - variable_cost - tax - fixed - acquisition
         cumulative += profit
         if payback_month is None and cumulative >= 0:
             payback_month = m
         months.append({"month": m, "level": level, "units": units, "revenue": revenue,
-                       "variable": variable_cost, "fixed": fixed, "acquisition": acquisition, "profit": profit,
+                       "variable": variable_cost, "tax": tax, "fixed": fixed, "acquisition": acquisition, "profit": profit,
                        "cumulative": cumulative})
     year_profit = sum(m["profit"] for m in months)
     year_revenue = sum(m["revenue"] for m in months)
@@ -240,6 +285,8 @@ def analyse(spec, price=None, volume=1.0):
         "plan": plan, "margin_at_plan": margin_at_plan, "breakeven": breakeven,
         "capacity": capacity, "churn": churn, "ltv": ltv, "cac_max": ltv / 3 if ltv else None,
         "cac": cac, "ltv_cac": ltv_cac, "cac_payback_months": cac_payback,
+        "simples": tax_months, "simples_mode": sn["anexo"] if sn else None, "prolabore": prolabore,
+        "goal": _goal(spec, p, var_base, fixed - prolabore, other_payroll, cac, churn, mode, sn) if goal else None,
         "year1_revenue": year_revenue, "year1_profit": year_profit,
         "year1_after_startup": year_profit - startup, "payback_month": payback_month,
         "cash_needed": cash_needed, "months": months, "flags": flags,
@@ -247,26 +294,87 @@ def analyse(spec, price=None, volume=1.0):
     }
 
 
+def _goal(spec, p, var_base, fixed_other, other_payroll, cac, churn, mode, sn):
+    """Quantas unidades por mês (ou assinantes ativos) para o fundador receber a meta.
+
+    Em regime estável: receita constante, RBT12 = 12 x receita do mês. Três jeitos de
+    tirar o dinheiro: tudo em pró-labore; pró-labore só até o Fator R chegar a 28% e o
+    resto em lucro distribuído; só lucro distribuído. Devolve None sem meta.
+    """
+    if "meta_renda_mensal" not in spec:
+        return None
+    goal = float(spec["meta_renda_mensal"])
+    if sn is None:
+        raise NumbersError("'meta_renda_mensal' precisa de 'simples' para calcular o imposto")
+    strategies = [("Tudo em pró-labore", lambda rev: goal / (1 - INSS_SOCIO))]
+    if sn["anexo"] == "fator_r":
+        strategies.append(("Pró-labore no Fator R + lucros",
+                           lambda rev: max(0.0, simples.FATOR_R_MINIMO * rev - other_payroll)))
+    strategies.append(("Só lucros distribuídos", lambda rev: 0.0))
+    rows = []
+    for name, prolabore_for in strategies:
+        found = None
+        for n in range(1, 200_001):
+            rev = n * p
+            pl = prolabore_for(rev)
+            if rev * 12 > simples.TETO:
+                break
+            anexo, rate, _, _ = simples.apurar([rev], [pl + other_payroll], sn["anexo"])[0]
+            acquisition = n * churn * cac if churn else 0.0
+            profit = rev - n * var_base - rev * rate - fixed_other - pl - acquisition
+            net = pl * (1 - INSS_SOCIO) + max(0.0, profit)
+            if profit >= 0 and net >= goal:
+                found = {"name": name, "units": n, "prolabore": pl, "anexo": anexo, "rate": rate,
+                         "tax": rev * rate, "dividends": profit, "revenue": rev}
+                break
+        rows.append(found or {"name": name, "units": None})
+    best = min((r for r in rows if r["units"]), key=lambda r: r["units"], default=None)
+    return {"goal": goal, "rows": rows, "best": best}
+
+
 def sensitivity(spec):
     """Os cenários que todo plano precisa aguentar."""
-    base = analyse(spec)
+    base = analyse(spec, goal=False)
     rows = [("Plano base", base)]
-    rows.append(("Preço -10%", analyse(spec, price=base["price"] * 0.9)))
-    rows.append(("Volume -20%", analyse(spec, volume=0.8)))
+    rows.append(("Preço -10%", analyse(spec, price=base["price"] * 0.9, goal=False)))
+    rows.append(("Volume -20%", analyse(spec, volume=0.8, goal=False)))
     worse = json.loads(json.dumps(spec))
     for it in worse.get("variavel", []):
         for k in ("custo", "percentual"):
             if k in it:
                 it[k] = float(it[k]) * 1.15
-    rows.append(("Custos unitários +15%", analyse(worse)))
+    rows.append(("Custos unitários +15%", analyse(worse, goal=False)))
     if base["mode"] == "assinatura":
         churny = dict(spec, churn_mensal=min(0.99, float(spec["churn_mensal"]) * 1.5))
-        rows.append(("Churn +50%", analyse(churny)))
+        rows.append(("Churn +50%", analyse(churny, goal=False)))
     return rows
 
 
 def _be(v):
     return "nunca" if math.isinf(v) else _num(math.ceil(v))
+
+
+def _goal_lines(a):
+    g = a["goal"]
+    sub = a["mode"] == "assinatura"
+    what = "assinantes ativos" if sub else ("vendas por mês" if a["mode"] == "mes" else "unidades por mês")
+    L = ["", "## Para viver disso", "",
+         "Meta: receber **%s por mês**, já descontados os 11%% de INSS do pró-labore. Regime estável, mesmos"
+         " custos de hoje; a RBT12 é 12 vezes a receita do mês." % _money(g["goal"]), "",
+         "| jeito de tirar o dinheiro | %s | pró-labore | lucro distribuído | anexo | Simples por mês |" % what,
+         "| --- | ---: | ---: | ---: | :---: | ---: |"]
+    for r in g["rows"]:
+        if r["units"] is None:
+            L.append("| %s | não chega | | | | |" % r["name"])
+            continue
+        L.append("| %s | **%s** | %s | %s | %s (%s) | %s |" % (
+            r["name"], _num(r["units"]), _whole(r["prolabore"]), _whole(r["dividends"]),
+            r["anexo"], _pct(r["rate"]), _whole(r["tax"])))
+    if g["best"]:
+        L += ["", "O caminho com menos clientes: **%s**, com %s %s." % (g["best"]["name"][0].lower() + g["best"]["name"][1:], _num(g["best"]["units"]), what)]
+    L += ["", "Lucro distribuído no Simples é isento de IR até o limite presumido; acima dele, só com contabilidade"
+          " completa. O INSS do sócio tem teto, e o pró-labore paga IR pela tabela. Combine a estratégia com um contador."]
+    return L
 
 
 def report(spec, a):
@@ -283,11 +391,17 @@ def report(spec, a):
         else:
             label, cost = it.get("item", "custo"), float(it["custo"])
         L.append("| %s | -%s |" % (label, _money(cost)))
+    if a["simples"]:
+        anexo12, rate12 = a["simples"][-1][0], a["simples"][-1][1]
+        L.append("| Simples Nacional, Anexo %s (alíquota efetiva do mês 12: %s) | -%s |" % (
+            anexo12, _pct(rate12), _money(rate12 * a["price"])))
     L.append("| **Margem de contribuição** (o que cada %s deixa para pagar os fixos) | **%s** (%s) |"
              % (u, _money(a["contribution"]), _pct(a["contribution_pct"])))
     L += ["", "## A margem que importa", ""]
-    L.append("Custos fixos: %s por mês (%s)." % (_whole(a["fixed_monthly"]), ", ".join(
-        "%s %s" % (it.get("item", "custo"), _whole(float(it["custo"]))) for it in a["fixed_items"]) or "nenhum informado"))
+    fixed_parts = ["%s %s" % (it.get("item", "custo"), _whole(float(it["custo"]))) for it in a["fixed_items"]]
+    if a["prolabore"]:
+        fixed_parts.append("Pró-labore %s" % _whole(a["prolabore"]))
+    L.append("Custos fixos: %s por mês (%s)." % (_whole(a["fixed_monthly"]), ", ".join(fixed_parts) or "nenhum informado"))
     L.append("")
     if sub:
         L.append("- **Ponto de equilíbrio: %s assinantes ativos.**" % _be(a["breakeven"]))
@@ -325,6 +439,16 @@ def report(spec, a):
           "- Depois dos %s iniciais: %s." % (_whole(a["startup"]), _whole(a["year1_after_startup"])),
           "- Investimento inicial recuperado: %s." % ("no mês %d" % a["payback_month"] if a["payback_month"] else "não dentro do ano 1"),
           "- Caixa necessário antes de se pagar: **%s**." % _whole(a["cash_needed"]),
+          ]
+    if a["simples"]:
+        tax_year = sum(m["tax"] for m in a["months"])
+        anexos = sorted(set(t[0] for t in a["simples"]))
+        L.append("- Simples no ano 1: %s (%s da receita), Anexo %s%s." % (
+            _whole(tax_year), _pct(tax_year / a["year1_revenue"]) if a["year1_revenue"] else "0%",
+            " e ".join(anexos), ", pelo Fator R" if a["simples_mode"] == "fator_r" else ""))
+    if a["goal"]:
+        L += _goal_lines(a)
+    L += [
           "", "## E se", "",
           "| cenário | margem no plano | equilíbrio (%s) | lucro do ano 1 |" % (
               "assinantes" if sub else ("por mês" if a["mode"] == "mes" else "por dia")),

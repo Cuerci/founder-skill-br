@@ -1,0 +1,13 @@
+{
+  "id": "P005",
+  "compra": true,
+  "compras_primeiro_mes": 1,
+  "motivo_codigo": "necessidade",
+  "motivo": "Eu perco duas, três clientes por mês que somem sem avisar, cada uma é uns 50 conto que vai embora. Se o lembrete segurar uma só já pagou os R$ 29,90, então vou testar os 7 dias grátis e ver.",
+  "objecao": "Tenho medo do lembrete chegar com cara de robô e a cliente achar frio, ou pior, achar que eu tô mandando spam. Minhas clientes gostam de falar comigo, não com máquina.",
+  "mudaria_de_ideia": "Se no teste eu ver que a mensagem chega estranha, sem o meu jeito, ou se as clientes reclamarem, eu cancelo antes de pagar.",
+  "preco_muito_barato": 9,
+  "preco_barato": 19,
+  "preco_caro": 45,
+  "preco_muito_caro": 70
+}

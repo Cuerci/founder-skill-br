@@ -25,6 +25,9 @@ Rodando no Brasil, ele erra justamente onde dói:
 - **Não conhece o Pix**, nem o direito de arrependimento de 7 dias do CDC, nem a LGPD.
 - **Não tem modo assinatura**, então não calcula churn, LTV nem quanto você pode
   pagar por cliente.
+- **Diz "lucrativo" sem perguntar se você vive disso.** Aqui o CFO calcula quantos
+  clientes você precisa para a sua meta de renda, comparando pró-labore e
+  distribuição de lucros pelo Fator R.
 
 ## Instalar
 
@@ -87,25 +90,48 @@ O CFO devolve:
 | Preço | R$ 49,90 |
 | Infraestrutura por assinante | -R$ 1,50 |
 | Taxa do Pix (Mercado Pago) (0,99% do preço) | -R$ 0,49 |
-| Simples Nacional, Anexo V (sem pró-labore) (15,5% do preço) | -R$ 7,73 |
+| Simples Nacional, Anexo V (alíquota efetiva do mês 12: 15,5%) | -R$ 7,73 |
 | **Margem de contribuição** | **R$ 40,17** (80,5%) |
 
 - Ponto de equilíbrio: 15 assinantes ativos.
 - Churn de 8% por mês: o assinante fica em média 12,5 meses; LTV de R$ 502,14.
 - Para pagar a aquisição com folga, gaste no máximo R$ 167,38 por assinante.
 
+E a pergunta que importa, **quantos assinantes para eu tirar R$ 5.000 por mês?**
+
+| jeito de tirar o dinheiro | assinantes ativos | pró-labore | lucro distribuído | anexo | Simples por mês |
+| --- | ---: | ---: | ---: | :---: | ---: |
+| Tudo em pró-labore | **138** | R$ 5.618 | R$ 10 | III (6%) | R$ 413 |
+| Pró-labore no Fator R + lucros | **131** | R$ 1.830 | R$ 3.483 | III (6%) | R$ 392 |
+| Só lucros distribuídos | **139** | R$ 0 | R$ 5.014 | V (15,5%) | R$ 1.075 |
+
+Quinze assinantes pagam o servidor. Para o fundador viver do produto, são 131.
+
 Também há exemplos de cafeteria (`exemplo.json`, modo dia) e de curso online
 (`exemplo-venda-unica.json`, modo mês).
 
+### O pacote inteiro, de ponta a ponta
+
+Em [`exemplos/agenda-manicure`](exemplos/agenda-manicure/) o pacote roda do começo
+ao fim numa ideia fictícia: uma agenda com lembrete no WhatsApp para manicures, a
+R$ 29,90. Pesquisa real, 3 conselheiros, 20 compradoras simuladas, preço, oferta,
+CFO, marketing, marca, operação, lançamento e o plano compilado.
+
+O veredito foi **Ainda não**: só 15% das compradoras compram. Mas o painel mostrou
+que 3 de 4 manicures que sofrem com falta compram, e pedem sinal no Pix. O pacote
+transformou "mais uma agenda" em "agenda sem furo a R$ 39,90". É esse tipo de
+virada que ele existe para achar antes de você gastar.
+
 ## As ferramentas
 
-Quatro scripts, só com a biblioteca padrão do Python. Nenhum acessa a rede.
+Cinco scripts, só com a biblioteca padrão do Python. Nenhum acessa a rede.
 
 ```bash
 python3 skills/fundador-cfo/economia_unitaria.py fundador/numeros.json --out fundador/cfo.md
 python3 skills/fundador-consumidor/painel.py init --cliente fundador/cliente.json --pitch fundador/pitch.md
 python3 skills/fundador-preco/van_westendorp.py respostas.csv --preco 50
 python3 skills/fundador-plano/compilar.py --dir fundador
+python3 skills/fundador-cfo/simples.py 15000 --anexo V                                   # alíquota efetiva do Simples
 ```
 
 Testes:
@@ -119,9 +145,12 @@ python3 -m unittest discover -s tests -v
 - Tudo em português do Brasil; valores em `R$ 1.234,56`; renda **mensal**.
 - `fundador-brasil` (nova): dossiê de mercado com fontes e `regras-br.md` com MEI,
   Simples e Fator R, taxas do Pix, CDC, CONAR, LGPD, INPI e Registro.br.
-- CFO: modo **assinatura** (churn, LTV, custo de aquisição, LTV/CAC), modo **mês**
-  para venda única, imposto e taxas como **percentual** que acompanham o preço nos
-  cenários, e o cenário "churn +50%".
+- CFO: **Simples Nacional calculado** (Anexos III e V, RBT12 proporcional do início
+  de atividade, Fator R mês a mês), **meta de renda do fundador** com três
+  estratégias de pró-labore e lucros, modo **assinatura** (churn, LTV, custo de
+  aquisição, LTV/CAC), modo **mês** para venda única, taxas como **percentual** que
+  acompanham o preço nos cenários, e o cenário "churn +50%".
+- Plano: o veredito também checa se o plano chega à meta de renda do fundador.
 - Preço: lê CSV exportado do Google Forms ou do Excel brasileiro (ponto e vírgula,
   "R$ 49,90").
 - Painel: compradores com nomes brasileiros, renda mensal e respostas em português.

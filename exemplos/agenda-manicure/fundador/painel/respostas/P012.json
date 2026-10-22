@@ -1,0 +1,13 @@
+{
+  "id": "P012",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Minha agenda tá cheia e funciona do meu jeito: eu mesma mando a mensagem na véspera, de graça, e minhas clientes de anos já tão acostumadas a falar direto comigo. Pagar todo mês pra fazer o que eu já faço não entra na minha cabeça.",
+  "objecao": "Cliente minha é mais velha, não vai ficar clicando em link pra marcar, vai me chamar no WhatsApp do mesmo jeito. Aí eu pago 29,90 e continuo fazendo tudo na mão.",
+  "mudaria_de_ideia": "Se eu visse que ele diminui de verdade as faltas e os bolos de última hora, tipo a cliente confirmar ou desmarcar sozinha e o app já encaixar outra no horário vago.",
+  "preco_muito_barato": 5,
+  "preco_barato": 10,
+  "preco_caro": 20,
+  "preco_muito_caro": 35
+}

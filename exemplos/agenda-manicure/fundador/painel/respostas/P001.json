@@ -1,0 +1,13 @@
+{
+  "id": "P001",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "preco",
+  "motivo": "Mano, minha agenda já tá cheia no WhatsApp e eu mesmo mando o lembrete. Pagar R$ 29,90 todo mês por isso, sendo que tem app grátis de agendamento, não desce.",
+  "objecao": "Tem app grátis que faz isso. Por que eu vou pagar assinatura pra uma coisa que eu já resolvo de graça mandando mensagem?",
+  "mudaria_de_ideia": "Ver outra nail designer de alongamento mostrando que parou de levar bolo por causa do lembrete, com número de falta caindo de verdade",
+  "preco_muito_barato": 5,
+  "preco_barato": 10,
+  "preco_caro": 20,
+  "preco_muito_caro": 35
+}

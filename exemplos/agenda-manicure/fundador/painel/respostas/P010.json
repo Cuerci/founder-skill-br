@@ -1,0 +1,13 @@
+{
+  "id": "P010",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Já uso app grátis e minha agenda já tá cheia, as clientes já sabem como marcar comigo. Pagar R$ 29,90 todo mês pra trocar uma coisa que já funciona não entra na minha conta.",
+  "objecao": "Tem app grátis que faz isso. Por que eu vou pagar e ainda ter que ensinar todas as minhas clientes a usar um link novo?",
+  "mudaria_de_ideia": "Se o meu app grátis parasse de mandar lembrete ou começasse a cobrar, aí eu testava esse.",
+  "preco_muito_barato": 5,
+  "preco_barato": 10,
+  "preco_caro": 20,
+  "preco_muito_caro": 35
+}

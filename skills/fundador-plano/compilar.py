@@ -14,7 +14,8 @@ As checagens:
     1. cada unidade dá dinheiro antes dos custos fixos   (fundador/numeros.json)
     2. o ano 1 dá lucro operacional                       (fundador/numeros.json)
     3. o ponto de equilíbrio cabe na capacidade, se houver capacidade
-    4. parte suficiente do painel compra                   (fundador/painel/resultados.json, --taxa-minima, padrão 25%)
+    4. o plano chega à meta de renda do fundador no mês 12, se houver meta_renda_mensal
+    5. parte suficiente do painel compra                   (fundador/painel/resultados.json, --taxa-minima, padrão 25%)
 
     python3 compilar.py                     # lê ./fundador, grava ./fundador/plano-de-negocio.md
     python3 compilar.py --dir caminho/fundador --taxa-minima 0.3
@@ -90,6 +91,13 @@ def verdict(d, min_buy_rate=0.25):
             fits = not math.isinf(be) and be <= float(cap)
             what = {"assinatura": "assinantes", "mes": "por mês"}.get(numbers["mode"], "por dia")
             checks.append((fits, "O equilíbrio é %s %s, contra uma capacidade de %s." % (ue._be(be), what, cap)))
+        goal = numbers.get("goal")
+        if goal:
+            best, level = goal["best"], numbers["months"][-1]["units"]
+            reach = best is not None and level >= best["units"]
+            checks.append((reach, "Meta do fundador (%s por mês): pede %s; o plano chega a %s no mês 12." % (
+                ue._money(goal["goal"]), ue._num(best["units"]) if best else "mais do que o teto do Simples",
+                ue._num(level))))
     raw = _read(os.path.join(d, "painel", "resultados.json"))
     if raw:
         panel = json.loads(raw)
@@ -135,6 +143,12 @@ def compile_plan(d, min_buy_rate=0.25):
               "| Investimento recuperado | %s |" % ("no mês %d" % numbers["payback_month"] if numbers["payback_month"] else "não no ano 1")]
         if sub and numbers["ltv"] is not None:
             L.append("| LTV por assinante | %s |" % ue._money(numbers["ltv"]))
+        goal = numbers.get("goal")
+        if goal and goal["best"]:
+            L.append("| Para o fundador receber %s por mês | %s %s (%s) |" % (
+                ue._money(goal["goal"]), ue._num(goal["best"]["units"]),
+                {"assinatura": "assinantes ativos", "mes": "vendas por mês"}.get(numbers["mode"], "unidades por mês"),
+                goal["best"]["name"][0].lower() + goal["best"]["name"][1:]))
         if panel:
             L.append("| Painel de compradores | %d compram · %d passam |" % (panel["buys"], panel["passes"]))
         L.append("")

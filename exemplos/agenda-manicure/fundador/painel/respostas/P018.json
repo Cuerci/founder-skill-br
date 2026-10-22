@@ -1,0 +1,13 @@
+{
+  "id": "P018",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Já uso um app grátis que marca horário e minhas clientes já tão acostumadas com o link. Pagar R$ 29,90 todo mês pra fazer a mesma coisa e ainda ter que avisar todo mundo do link novo não compensa pra mim agora.",
+  "objecao": "O que esse tem que o grátis não tem? Se for só o lembrete no WhatsApp, não sei se vale trinta conto por mês, e trocar de app dá trabalho.",
+  "mudaria_de_ideia": "Se o lembrete no WhatsApp provasse que diminui as faltas das clientes, tipo cliente que some sem avisar, aí eu pagaria.",
+  "preco_muito_barato": 5,
+  "preco_barato": 12,
+  "preco_caro": 25,
+  "preco_muito_caro": 40
+}

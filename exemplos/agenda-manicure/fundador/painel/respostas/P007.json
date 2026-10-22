@@ -1,0 +1,13 @@
+{
+  "id": "P007",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Atendo poucas clientes por dia, alongamento leva horas, e minha agenda no caderno com o Google Agenda dá conta. Eu mesmo mando o lembrete no WhatsApp, cliente minha gosta de falar comigo, não com robô.",
+  "objecao": "R$ 29,90 por mês é mais uma conta, e minha cliente de ticket alto vai achar estranho marcar por link em vez de falar direto comigo.",
+  "mudaria_de_ideia": "Se tivesse cobrança de sinal no Pix na hora de marcar, pra eu parar de perder horário de 3 horas com cliente que fura.",
+  "preco_muito_barato": 5,
+  "preco_barato": 12,
+  "preco_caro": 25,
+  "preco_muito_caro": 45
+}

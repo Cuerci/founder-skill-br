@@ -2,22 +2,59 @@
   "negocio": "App Tal (exemplo: SaaS por assinatura mensal)",
   "modelo": "assinatura",
   "unidade": "assinante-mês",
-  "preco": 49.90,
+  "preco": 49.9,
   "variavel": [
-    {"item": "Infraestrutura por assinante", "custo": 1.50},
-    {"item": "Taxa do Pix (Mercado Pago)", "percentual": 0.0099},
-    {"item": "Simples Nacional, Anexo V (sem pró-labore)", "percentual": 0.155}
+    {
+      "item": "Infraestrutura por assinante",
+      "custo": 1.5
+    },
+    {
+      "item": "Taxa do Pix (Mercado Pago)",
+      "percentual": 0.0099
+    }
   ],
   "fixo_mensal": [
-    {"item": "Servidor", "custo": 150},
-    {"item": "Domínio, e-mail e ferramentas", "custo": 120},
-    {"item": "Contador", "custo": 300}
+    {
+      "item": "Servidor",
+      "custo": 150
+    },
+    {
+      "item": "Domínio, e-mail e ferramentas",
+      "custo": 120
+    },
+    {
+      "item": "Contador",
+      "custo": 300
+    }
   ],
   "inicial": [
-    {"item": "Abertura do CNPJ e registro de marca", "custo": 1200},
-    {"item": "Anúncios de lançamento", "custo": 1500}
+    {
+      "item": "Abertura do CNPJ e registro de marca",
+      "custo": 1200
+    },
+    {
+      "item": "Anúncios de lançamento",
+      "custo": 1500
+    }
   ],
-  "novos_por_mes": [10, 15, 20, 25, 30, 30, 35, 35, 40, 40, 45, 45],
+  "novos_por_mes": [
+    10,
+    15,
+    20,
+    25,
+    30,
+    30,
+    35,
+    35,
+    40,
+    40,
+    45,
+    45
+  ],
   "churn_mensal": 0.08,
-  "assinantes_iniciais": 0
+  "assinantes_iniciais": 0,
+  "simples": {
+    "anexo": "fator_r"
+  },
+  "meta_renda_mensal": 5000
 }

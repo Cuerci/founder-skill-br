@@ -35,7 +35,10 @@ imprime o veredito e cada checagem. As checagens, todas calculadas:
 1. Cada unidade dá dinheiro antes dos custos fixos (`fundador/numeros.json`).
 2. O ano 1 dá lucro operacional.
 3. O ponto de equilíbrio cabe na capacidade, se houver capacidade.
-4. Compradores simulados suficientes compram (`fundador/painel/resultados.json`;
+4. O plano chega à meta de renda do fundador no mês 12, se o CFO tiver
+   `meta_renda_mensal`. Sem meta, avise que "Lucrativo" não diz se o fundador vive
+   do negócio.
+5. Compradores simulados suficientes compram (`fundador/painel/resultados.json`;
    régua padrão de 25%, mude com `--taxa-minima` e diga por quê).
 
 Sem números, o veredito é Incompleto: ofereça rodar `/fundador-cfo`. Liste as outras

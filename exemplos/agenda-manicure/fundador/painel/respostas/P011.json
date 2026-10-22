@@ -1,0 +1,13 @@
+{
+  "id": "P011",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Atendo poucas clientes por dia, alongamento leva duas, três horas, e minha clientela é fixa, já marca a próxima quando sai daqui. O caderno e o WhatsApp dão conta faz anos, não vejo motivo pra pagar mais uma conta todo mês.",
+  "objecao": "R$ 29,90 por mês é mais uma conta, e minhas clientes são de anos, não sei se elas iam querer marcar por link em vez de falar comigo direto.",
+  "mudaria_de_ideia": "Se começasse a ter muita cliente furando horário, aí o lembrete automático se pagaria com um atendimento salvo.",
+  "preco_muito_barato": 5,
+  "preco_barato": 12,
+  "preco_caro": 25,
+  "preco_muito_caro": 40
+}

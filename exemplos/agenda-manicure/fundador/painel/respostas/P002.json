@@ -1,0 +1,13 @@
+{
+  "id": "P002",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Já baixei app de agenda e larguei em duas semanas. Minhas clientes marcam pelo WhatsApp comigo, não vão clicar em link, e com a agenda ainda meio vazia R$ 29,90 todo mês pesa pra mim.",
+  "objecao": "Lembrete automático parece robô. Se a cliente achar que virei empresa fria, ela some. Prefiro eu mesma mandar mensagem.",
+  "mudaria_de_ideia": "Ver o lembrete de verdade, escrito do meu jeito e parecendo que fui eu que mandei, e outra manicure como eu dizendo que as clientes usaram o link e a falta caiu.",
+  "preco_muito_barato": 5,
+  "preco_barato": 12,
+  "preco_caro": 25,
+  "preco_muito_caro": 40
+}

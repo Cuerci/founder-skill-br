@@ -1,0 +1,13 @@
+{
+  "id": "P009",
+  "compra": false,
+  "compras_primeiro_mes": 0,
+  "motivo_codigo": "habito",
+  "motivo": "Minhas clientes gostam de falar comigo no zap, mandar áudio, pedir encaixe... não vão querer ficar clicando em link. E com a agenda ainda meio vazia, R$ 29,90 todo mês pesa, o caderno e o Google Agenda já dão conta.",
+  "objecao": "Minha cliente não vai querer agendar por link, ela gosta de falar comigo. E eu tô começando, cada real conta.",
+  "mudaria_de_ideia": "Se eu visse que o lembrete na véspera acaba com as faltas e eu ganho mais do que pago, tipo uma amiga manicure me mostrando que funcionou com as clientes dela",
+  "preco_muito_barato": 5,
+  "preco_barato": 10,
+  "preco_caro": 20,
+  "preco_muito_caro": 35
+}

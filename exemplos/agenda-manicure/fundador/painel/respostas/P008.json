@@ -1,0 +1,13 @@
+{
+  "id": "P008",
+  "compra": true,
+  "compras_primeiro_mes": 1,
+  "motivo_codigo": "necessidade",
+  "motivo": "Cada cliente que fura comigo é uns R$ 150, R$ 200 de alongamento jogado fora, e perco de duas a quatro por mês. Se o lembrete salvar uma só já pagou o mês, então vou testar os 7 dias e se funcionar eu fico.",
+  "objecao": "Minha cliente tá acostumada a falar comigo direto no WhatsApp. Se chegar uma mensagem com cara de robô, ela vai achar frio, ou pior, achar que é golpe e nem responder.",
+  "mudaria_de_ideia": "Se no teste eu não conseguir escrever a mensagem do meu jeito ou se ela chegar de um número que não é o meu, eu cancelo antes de pagar.",
+  "preco_muito_barato": 9,
+  "preco_barato": 19,
+  "preco_caro": 49,
+  "preco_muito_caro": 79
+}
