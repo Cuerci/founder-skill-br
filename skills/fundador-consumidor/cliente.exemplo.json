@@ -1,0 +1,29 @@
+{
+  "negocio": "Café Tal (exemplo: cafeteria de balcão em Curitiba)",
+  "alvo": "Profissionais de 24 a 40 anos que trabalham no Centro de Curitiba e tomam café fora 4 ou mais vezes por semana",
+  "onde": "Curitiba, perto da Rua XV de Novembro",
+  "idade": [24, 40],
+  "segmentos": [
+    {"nome": "Início de carreira (CLT ou estágio)", "share": 0.45, "renda_mensal": [2500, 5000]},
+    {"nome": "Meio de carreira", "share": 0.40, "renda_mensal": [5000, 12000]},
+    {"nome": "Renda alta", "share": 0.15, "renda_mensal": [12000, 25000]}
+  ],
+  "comportamentos": [
+    {"nome": "Freguês diário", "share": 0.25, "como": "Pede o mesmo café no mesmo lugar quase toda manhã."},
+    {"nome": "Caçador de promoção", "share": 0.20, "como": "Espera cupom no iFood, usa cartão fidelidade."},
+    {"nome": "Segue tendência", "share": 0.15, "como": "Experimenta o que é novo e posta no Instagram."},
+    {"nome": "Leitor de avaliação", "share": 0.15, "como": "Olha a nota no Google Maps antes de entrar."},
+    {"nome": "Fiel à padaria", "share": 0.25, "como": "Toma o cafezinho da padaria da esquina, onde já é conhecido."}
+  ],
+  "objecoes": [
+    "R$ 14 por um café é caro",
+    "Na padaria custa R$ 6",
+    "Não tem onde sentar",
+    "Provaria uma vez, não todo dia"
+  ],
+  "habitos": [
+    "você pega ônibus até o Centro",
+    "você trabalha de casa duas vezes por semana",
+    "você almoça na rua todo dia"
+  ]
+}

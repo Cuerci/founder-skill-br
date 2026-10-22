@@ -1,0 +1,27 @@
+{
+  "negocio": "Café Tal (exemplo: cafeteria de balcão em Curitiba)",
+  "unidade": "copo",
+  "preco": 14.00,
+  "variavel": [
+    {"item": "Café e leite", "custo": 2.10},
+    {"item": "Copo, tampa, guardanapo", "custo": 0.60},
+    {"item": "Taxa da maquininha (débito/Pix)", "percentual": 0.012},
+    {"item": "Simples Nacional (estimativa, Anexo I)", "percentual": 0.04}
+  ],
+  "fixo_mensal": [
+    {"item": "Folha (2 atendentes, com encargos)", "custo": 7800},
+    {"item": "Aluguel + condomínio + luz", "custo": 5200},
+    {"item": "Contador e sistemas", "custo": 650}
+  ],
+  "inicial": [
+    {"item": "Caução do aluguel", "custo": 10400},
+    {"item": "Reforma", "custo": 18000},
+    {"item": "Máquina de espresso e moedor", "custo": 22000},
+    {"item": "Estoque inicial", "custo": 3500},
+    {"item": "Anúncios de lançamento", "custo": 2000}
+  ],
+  "dias_por_mes": 26,
+  "capacidade_por_dia": 400,
+  "plano_por_dia": 160,
+  "rampa_por_dia": [60, 80, 95, 110, 120, 130, 138, 145, 150, 155, 158, 160]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "founder-skill-br",
+  "description": "Doze skills gratuitas do Claude que testam um negócio no Brasil antes do lançamento: conselho, concorrentes, painel de 100 compradores simulados, preço, oferta, CFO em reais (com MEI, Simples, Pix), marketing, marca, operação, lançamento e plano. Versão brasileira do founder-skill. MIT.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Lucas Cuerci",
+    "url": "https://github.com/Cuerci"
+  },
+  "homepage": "https://github.com/Cuerci/founder-skill-br",
+  "repository": "https://github.com/Cuerci/founder-skill-br",
+  "license": "MIT",
+  "keywords": ["claude-code", "claude-skills", "empreendedorismo", "startup", "plano-de-negocios", "mei", "simples-nacional", "pix", "brasil"]
+}

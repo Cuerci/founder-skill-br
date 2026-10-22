@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "founder-skill-br",
+  "description": "O pacote Fundador para o Claude, em português e com as regras do Brasil",
+  "owner": {
+    "name": "Lucas Cuerci",
+    "url": "https://github.com/Cuerci"
+  },
+  "plugins": [
+    {
+      "name": "founder-skill-br",
+      "description": "Doze skills que testam um negócio no Brasil antes do lançamento: mercado, conselho, concorrentes, painel de compradores, preço, oferta, CFO, marketing, marca, operação, lançamento e plano de negócio.",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/Cuerci/founder-skill-br"
+    }
+  ]
+}

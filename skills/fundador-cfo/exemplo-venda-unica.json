@@ -1,0 +1,21 @@
+{
+  "negocio": "Curso Tal (exemplo: curso online de venda única)",
+  "modelo": "mes",
+  "unidade": "venda do curso",
+  "preco": 297.00,
+  "variavel": [
+    {"item": "Taxa da plataforma de venda (estimativa)", "percentual": 0.0899},
+    {"item": "Simples Nacional, Anexo III (estimativa)", "percentual": 0.06},
+    {"item": "Custo de aquisição por venda (anúncio)", "custo": 60.00}
+  ],
+  "fixo_mensal": [
+    {"item": "Área de membros e e-mail", "custo": 150},
+    {"item": "Contador", "custo": 300}
+  ],
+  "inicial": [
+    {"item": "Gravação e edição", "custo": 3000},
+    {"item": "Abertura do CNPJ", "custo": 500}
+  ],
+  "rampa_por_mes": [5, 10, 15, 20, 25, 25, 30, 30, 30, 35, 35, 40],
+  "capacidade_por_mes": 1000
+}
